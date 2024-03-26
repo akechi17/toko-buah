@@ -3,39 +3,58 @@
 @section('title', 'Data Pembayaran')
 
 @section('content')
-<div class="card shadow">
-    <div class="card-header">
-        <div class="card-title">Data Pembayaran</div>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover table-stripped">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Tanggal</th>
-                        <th>Order</th>
-                        <th>Jumlah</th>
-                        <th>No Rekening</th>
-                        <th>Atas Nama</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+            <h4 class="card-title">Payment Data</h4>
+            </div>
+            <div class="card-body">
+            <div>
+                <table class="table">
+                <thead class=" text-primary">
+                    <th>
+                    No
+                    </th>
+                    <th>
+                    Date
+                    </th>
+                    <th>
+                    Order
+                    </th>
+                    <th>
+                    Total
+                    </th>
+                    <th>
+                    Account Number
+                    </th>
+                    <th>
+                    Name
+                    </th>
+                    <th>
+                    Status
+                    </th>
+                    <th class='text-center'>
+                    Action
+                    </th>
                 </thead>
                 <tbody>
 
                 </tbody>
-            </table>
+                </table>
+            </div>
+            </div>
         </div>
-    </div>
+    </div> 
 </div>
 
 <div class="modal fade" id="modal-form" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+        <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Form Pembayaran</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title">Form Pembayaran</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="row">
@@ -73,11 +92,11 @@
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
-      </div>
+        </div>
     </div>
-  </div>
+</div>
 
 @endsection
 

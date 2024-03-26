@@ -19,12 +19,12 @@ class ReportController extends Controller
         ->select(DB::raw('
             product_name,
             count(*) as jumlah_dibeli,
-            harga,  
+            price,  
             Sum(total) as pendapatan, 
             SUM(jumlah) as total_qty'))
         ->whereRaw("date(order_details.created_at) >= '$request->dari'")
         ->whereRaw("date(order_details.created_at) <= '$request->sampai'")
-        ->groupBy('id_produk', 'product_name', 'harga')->get();
+        ->groupBy('id_produk', 'product_name', 'price')->get();
         return response()->json([
             'data' => $report
         ]);

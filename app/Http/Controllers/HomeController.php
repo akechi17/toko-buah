@@ -38,6 +38,10 @@ class HomeController extends Controller
     }
 
     public function product($id_product){
+        if (!Auth::guard('webmember')->user()) {
+            return redirect('/login_member');
+        }
+
         $product = Product::find($id_product);
         $latest_products = Product::orderByDesc('created_at')->offset(0)->limit(10)->get();
         return view('home.product', compact('product', 'latest_products'));
@@ -53,7 +57,7 @@ class HomeController extends Controller
     }
     public function checkout_orders(Request $request){
         $id = DB::table('orders')->insertGetId([
-            'id_member' => $request->id_member,
+            'id_member' => $request->id_member, 
             'invoice' => date('ymds'),
             'grand_total' => $request->grand_total,
             'status' => 'Baru',
@@ -81,10 +85,7 @@ class HomeController extends Controller
             'id_order' => $request->id_order,
             'id_member' => Auth::guard('webmember')->user()->id,
             'jumlah' => $request->jumlah,
-            'provinsi' => $request->provinsi,
-            'kabupaten' => $request->kabupaten,
-            'kecamatan' => "",
-            'detail_alamat' => $request->detail_alamat,
+            'address_detail' => $request->address_detail,
             'status' => 'MENUNGGU',
             'no_rekening' => $request->no_rekening,
             'atas_nama' => $request->atas_nama,

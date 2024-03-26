@@ -29,7 +29,7 @@
                 </a>
             </div>
             <div class="sidebar-wrapper">
-                <ul class="nav">
+                <ul class="nav" id="accordionSidebar">
                     <li class="{{ (Request::is('dashboard') ? 'active' : '') ? 'active' : '' }}">
                         <a href="/dashboard">
                         <i class="nc-icon nc-bank"></i>
@@ -42,22 +42,32 @@
                         <p>Products</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="{{ (Request::is('payment') ? 'active' : '') ? 'active' : '' }}">
                         <a href="/payment">
                         <i class="nc-icon nc-bell-55"></i>
-                        <p>Pembayaran</p>
+                        <p>Payment</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="/laporan">
+                    <li class="{{ (Request::is('pesanan/*') ? 'active' : '') ? 'active' : '' }} nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pesanan">
+                            <i class="nc-icon nc-bell-55"></i>
+                            <p>Order</p>
+                        </a>
+                        <div id="pesanan" class="collapse" aria-labelledby="orderDropdown" data-parent="#accordionSidebar">
+                            <div class="py-2 collapse-inner rounded bg-white">
+                                <a class="collapse-item" href="/pesanan/baru">New Orders</a>
+                                <a class="collapse-item" href="/pesanan/dikonfirmasi">Confirmed Orders</a>
+                                <a class="collapse-item" href="/pesanan/dikemas">Packed Orders</a>
+                                <a class="collapse-item" href="/pesanan/dikirim">Sent Orders</a>
+                                <a class="collapse-item" href="/pesanan/diterima">Received Orders</a>
+                                <a class="collapse-item" href="/pesanan/selesai">Finished Orders</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="{{ (Request::is('report') ? 'active' : '') ? 'active' : '' }}">
+                        <a href="/report">
                         <i class="nc-icon nc-single-02"></i>
-                        <p>Laporan Pesanan</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/tentang">
-                        <i class="nc-icon nc-tile-56"></i>
-                        <p>About</p>
+                        <p>Order Report</p>
                         </a>
                     </li>
                 </ul>

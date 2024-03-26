@@ -1,54 +1,53 @@
 @extends('layout.app')
 
-@section('title', 'Laporan Pesanan')
+@section('title', 'Order Report')
 
 @section('content')
-<div class="card shadow">
-    <div class="card-header">
-        <div class="card-title">Laporan Pesanan</div>
-    </div>
-    <div class="card-body">
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Order Report</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form>
+                                <div class="form-group">
+                                    <label for="dari">From</label>
+                                    <input type="date" name="dari" id="dari" class="form-control" value="{{ request()->input('dari') }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">To</label>
+                                    <input type="date" name="sampai" id="sampai" class="form-control" value="{{ request()->input('sampai') }}">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <form>
-                    <div class="form-group">
-                        <label for="">Dari</label>
-                        <input type="date" name="dari" id="dari" class="form-control" value="{{ request()->input('dari') }}">
+                    @if (request()->input('dari'))
+                    <div>
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th>No</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Bought Amount</th>
+                                <th>Total Qty</th>
+                                <th>Profit</th>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
                     </div>
-                    <div class="form-group">
-                        <label for="">Sampai</label>
-                        <input type="date" name="sampai" id="sampai" class="form-control" value="{{ request()->input('sampai') }}">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                    </div>
-                </form>
+                    @endif
+                </div>
             </div>
         </div>
-
-        @if (request()->input('dari'))
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover table-stripped">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Barang</th>
-                            <th>Harga</th>
-                            <th>Jumlah Dibeli</th>
-                            <th>Total Qty</th>
-                            <th>Pendapatan</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-            </div>
-        @endif
-        
-    </div>
+    </div> 
 </div>
 
 @endsection
@@ -80,7 +79,7 @@
                         <tr>
                             <td>${index+1}</td>
                             <td>${val.product_name}</td>
-                            <td>${rupiah(val.harga)}</td>
+                            <td>${rupiah(val.price)}</td>
                             <td>${val.jumlah_dibeli}</td>
                             <td>${val.total_qty}</td>
                             <td>${rupiah(val.pendapatan)}</td>

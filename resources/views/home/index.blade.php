@@ -82,30 +82,4 @@
     </div>
   </div>
 </div>
-
-<div class="site-section">
-  <div class="container">
-    <div class="row">
-      <div class="title-section text-center col-12">
-        <h2 class="text-uppercase">Testimonials</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 block-3 products-wrap">
-        <div class="nonloop-block-3 no-direction owl-carousel">
-        @foreach ($testimonies as $testimoni)
-          <div class="testimony">
-            <blockquote>
-              <img src="images/person_1.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-              <p>&ldquo;{{ $testimoni->deskripsi }}&rdquo;</p>
-            </blockquote>
-
-            <p>&mdash; {{ $testimoni->nama_testimoni }}</p>
-          </div>
-        @endforeach
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 @endsection

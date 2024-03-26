@@ -52,10 +52,7 @@ Route::get('/pesanan/dikemas', [OrderController::class, 'dikemas_list']);
 Route::get('/pesanan/diterima', [OrderController::class, 'diterima_list']);
 Route::get('/pesanan/selesai', [OrderController::class, 'selesai_list']);
 
-Route::get('/laporan', [ReportController::class, 'index']);
-
-Route::get('/tentang', [AboutController::class, 'index']);
-Route::post('/tentang/{about}', [AboutController::class, 'update']);
+Route::get('/report', [ReportController::class, 'index']);
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 

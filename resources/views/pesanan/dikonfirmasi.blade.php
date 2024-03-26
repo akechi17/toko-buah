@@ -1,31 +1,46 @@
 @extends('layout.app')
 
-@section('title', 'Data Pesanan Dikonfirmasi')
+@section('title', 'Confirmed Orders Data')
 
 @section('content')
-<div class="card shadow">
-    <div class="card-header">
-        <div class="card-title">Data Pesanan Dikonfirmasi</div>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover table-stripped">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Tanggal Pesanan</th>
-                        <th>Invoice</th>
-                        <th>Member</th>
-                        <th>Total</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Confirmed Orders Data</h4>
         </div>
-    </div>
+        <div class="card-body">
+          <div>
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  No
+                </th>
+                <th>
+                  Order Date
+                </th>
+                <th>
+                  Invoice
+                </th>
+                <th>
+                  Member
+                </th>
+                <th>
+                  Total
+                </th>
+                <th class='text-center'>
+                  Action
+                </th>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div> 
 </div>
 
 @endsection

@@ -33,7 +33,6 @@
                 $checkoutTotal = 0;
               @endphp
                 <input type="hidden" name="id_member" value="{{ Auth::guard('webmember')->user()->id }}">
-                <input type="hidden" name="grand_total" value="{{ $checkoutTotal }}">
               @foreach ($carts as $cart)
               @php
                 $checkoutTotal += $cart->total;
@@ -55,6 +54,7 @@
                 <td><a href="/delete_from_cart/{{ $cart->id }}" class="btn btn-primary height-auto btn-sm">X</a></td>
               </tr>
               @endforeach
+              <input type="hidden" name="grand_total" value="{{ $checkoutTotal }}">
             </tbody>
           </table>
         </div>

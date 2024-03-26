@@ -4160,7 +4160,15 @@ License - nucleoapp.com/license/
     margin-left: 0;
     margin-bottom: 30px; }
   .card .form-horizontal .col-md-3.col-form-label {
-    text-align: left; } }
+    text-align: left; }
+  .collapse-inner {
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .nav-item .collapse .collapse-inner {
+      box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+      border-radius: 0.35rem;
+  } }
 
 @media screen and (max-width: 767px) {
   .nav-tabs-navigation.verical-navs {
@@ -4216,3 +4224,52 @@ License - nucleoapp.com/license/
     padding: 15px; } }
 
 /*# sourceMappingURL=paper-dashboard.css.map */
+.collapse-inner {
+    border-radius: 0.35rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.nav-item .collapse .collapse-inner,
+.nav-item .collapsing .collapse-inner {
+    padding: 0.5rem 0;
+    min-width: 10rem;
+    font-size: 0.85rem;
+    margin: 0 0 1rem 0;
+}
+
+.nav-item .collapse .collapse-inner .collapse-header,
+.nav-item .collapsing .collapse-inner .collapse-header {
+    margin: 0;
+    white-space: nowrap;
+    padding: 0.5rem 1.5rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 0.65rem;
+    color: #b7b9cc;
+}
+
+.nav-item .collapse .collapse-inner .collapse-item,
+.nav-item .collapsing .collapse-inner .collapse-item {
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    display: block;
+    color: #3a3b45;
+    text-decoration: none;
+    border-radius: 0.35rem;
+    white-space: nowrap;
+}
+
+.nav-item .collapse .collapse-inner .collapse-item:hover,
+.nav-item .collapsing .collapse-inner .collapse-item:hover {
+    background-color: #eaecf4;
+}
+
+.nav-item .collapse .collapse-inner .collapse-item:active,
+.nav-item .collapsing .collapse-inner .collapse-item:active {
+    background-color: #dddfeb;
+}
+.nav-item .collapse .collapse-inner .collapse-item.active,
+.nav-item .collapsing .collapse-inner .collapse-item.active {
+    color: #4e73df;
+    font-weight: 700;
+}

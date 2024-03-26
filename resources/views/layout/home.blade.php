@@ -34,7 +34,7 @@
                 $about = App\Models\About::first();
                 if (Auth::guard('webmember')->check()){
                 $user_id = Illuminate\Support\Facades\Auth::guard('webmember')->user()->id;
-                $cart_total = App\Models\Cart::where('id_member', $user_id)->count();
+                $cart_total = App\Models\Cart::where('id_member', Auth::guard('webmember')->user()->id)->where('is_checkout', 0)->count();
                 }
               @endphp
               <a href="/" class="js-logo-clone">{{ $about->judul_website }}</a>
@@ -51,8 +51,8 @@
                     <li><a href="/stores/sayur">Sayur</a></li>
                   </ul>
                 </li>
+                <li class="{{ (Request::is('orders') ? 'active' : '') ? 'active' : '' }}"><a href="/orders">Orders</a></li>
                 <li class="{{ (Request::is('about') ? 'active' : '') ? 'active' : '' }}"><a href="/about">About</a></li>
-                <li><a href="#">Contact</a></li>
               </ul>
             </nav>
           </div>
