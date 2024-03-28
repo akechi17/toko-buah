@@ -21,19 +21,19 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-// Route::post('login', [AuthController::class, 'login_member']);
-// Route::post('logout', [AuthController::class, 'logout_member']);
+// Route::post('login', [AuthController::class, 'login_customer']);
+// Route::post('logout', [AuthController::class, 'logout_customer']);
 // auth
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::get('logout', [AuthController::class, 'logout']);
 
-Route::get('login_member', [AuthController::class, 'login_member']);
-Route::post('login_member', [AuthController::class, 'login_member_action']);
-Route::get('logout_member', [AuthController::class, 'logout_member']);
+Route::get('login_customer', [AuthController::class, 'login_customer']);
+Route::post('login_customer', [AuthController::class, 'login_customer_action']);
+Route::get('logout_customer', [AuthController::class, 'logout_customer']);
 
-Route::get('register_member', [AuthController::class, 'register_member']);
-Route::post('register_member', [AuthController::class, 'register_member_action']);
+Route::get('register_customer', [AuthController::class, 'register_customer']);
+Route::post('register_customer', [AuthController::class, 'register_customer_action']);
 Route::get('/barang', [ProductController::class, 'list']);
 Route::get('/reviews', [ReviewController::class, 'list']);
 Route::get('/payment', [PaymentController::class, 'list']);

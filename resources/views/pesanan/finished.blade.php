@@ -24,7 +24,7 @@
                   Invoice
                 </th>
                 <th>
-                  Member
+                  Customer
                 </th>
                 <th>
                   Total
@@ -74,7 +74,7 @@
                             <td>${index+1}</td>
                             <td>${date(val.created_at)}</td>
                             <td>${val.invoice}</td>
-                            <td>${val.member.nama_member}</td>
+                            <td>${val.customer.nama_customer}</td>
                             <td>${rupiah(val.grand_total)}</td>
                         </tr>
                         `;

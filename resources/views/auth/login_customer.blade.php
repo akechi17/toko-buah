@@ -21,7 +21,7 @@
             <h5 class="card-title">Login</h5>
           </div>
           <div class="card-body">
-            <form action="/login_member" method="POST">
+            <form action="/login_customer" method="POST">
               @csrf
               @if (Session::has('errors_login'))
                 <ul>
@@ -64,7 +64,7 @@
           </div>
         </div>
 
-        <a href="/register_member">Don't Have an Account? Register!</a>
+        <a href="/register_customer">Don't Have an Account? Register!</a>
       </div>
     
     <script src="../js/app.js"></script>

@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_customer');
+            $table->integer('id_barang');
+            $table->integer('is_checkout');
             $table->timestamps();
         });
     }

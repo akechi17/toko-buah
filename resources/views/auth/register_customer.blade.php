@@ -21,7 +21,7 @@
             <h5 class="card-title">Register</h5>
           </div>
           <div class="card-body">
-            <form action="/register_member" method="POST">
+            <form action="/register_customer" method="POST">
               @csrf
               @if (Session::has('errors'))
                 <ul>
@@ -39,8 +39,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>Member Name</label>
-                    <input type="text" class="form-control" placeholder="Member Name" name='nama_member'>
+                    <label>Customer Name</label>
+                    <input type="text" class="form-control" placeholder="Customer Name" name='nama_customer'>
                   </div>
                 </div>
               </div>
@@ -56,7 +56,15 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label>Email</label>
-                    <input type="email" class="form-control" placeholder="Email" name='email' value="{{ Session::get('email') }}">
+                    <input type="email" class="form-control" placeholder="Email" name='email'>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Address</label>
+                    <textarea name="address" id="address" cols="30" rows="10" placeholder="Address" class="form-control"></textarea>
                   </div>
                 </div>
               </div>
@@ -86,7 +94,7 @@
           </div>
         </div>
 
-        <a href="/register_member">Don't Have an Account? Register!</a>
+        <a href="/register_customer">Don't Have an Account? Register!</a>
       </div>
     
     <script src="../js/app.js"></script>

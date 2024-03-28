@@ -44,9 +44,9 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'webmember' => [
+        'webcustomer' => [
             'driver' => 'session',
-            'provider' => 'members',
+            'provider' => 'customers',
         ],
     ],
 
@@ -73,9 +73,9 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'members' => [
+        'customers' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Member::class,
+            'model' => App\Models\Customer::class,
         ],
 
         // 'users' => [

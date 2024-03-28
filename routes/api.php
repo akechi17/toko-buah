@@ -9,7 +9,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\MemberController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ Route::group([
     Route::resources([
         'sliders' => SliderController::class,
         'products' => ProductController::class,
-        'members' => MemberController::class,
+        'customers' => CustomerController::class,
         'testimonies' => TestimoniController::class,
         'reviews' => ReviewController::class,
         'orders' => OrderController::class,

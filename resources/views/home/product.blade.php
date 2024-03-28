@@ -123,7 +123,7 @@
   <script>
     $(function(){
       $('.add-to-cart').click(function(e){
-        id_member = {{Auth::guard('webmember')->user()->id}}
+        id_customer = {{Auth::guard('webcustomer')->user()->id}}
         id_barang = {{ $product->id }}
         jumlah = $('.jumlah').val()
         total = {{ $product->price }}*jumlah
@@ -136,7 +136,7 @@
             'X-CSRF-TOKEN': "{{ csrf_token() }}",
           },
           data : {
-            id_member,
+            id_customer,
             id_barang,
             jumlah,
             total,

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -46,33 +46,34 @@ class AuthController extends Controller
         ]);
     }
 
-    public function register_member_action(Request $request){
+    public function register_customer_action(Request $request){
         $validator = Validator::make($request->all(),[
-            'nama_member' => 'required',
+            'nama_customer' => 'required',
             'no_hp' => 'required',
             'email' => 'required|email',
+            'address' => 'required',
             'password' => 'required|same:konfirmasi_password',
             'konfirmasi_password' => 'required|same:password'
         ]);
 
         if ($validator->fails()) {
            Session::flash('errors', $validator->errors()->toArray());
-           return redirect('/register_member');
+           return redirect('/register_customer');
         }
 
         $input = $request->all();
         $input['password'] = Hash::make($request->password);
         unset($input['konfirmasi_password']);
-        Member::create($input);
+        Customer::create($input);
         Session::flash('success', 'Account successfully registered');
-        return redirect('/login_member');
+        return redirect('/login_customer');
     }
 
-    public function login_member(){
-        return view('auth.login_member');
+    public function login_customer(){
+        return view('auth.login_customer');
     }
 
-    public function login_member_action(Request $request){
+    public function login_customer_action(Request $request){
         $validator = Validator::make($request->all(),[
             'email' => 'required|email',
             'password' => 'required'
@@ -80,27 +81,27 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             Session::flash('errors_login', $validator->errors()->toArray());
-            return redirect('/login_member');
+            return redirect('/login_customer');
          }
 
         $credentials = $request->only('email', 'password');
-        $member = Member::where('email', $request->email)->first();
-        if ($member){
-            if(Auth::guard('webmember')->attempt($credentials)){
+        $customer = Customer::where('email', $request->email)->first();
+        if ($customer){
+            if(Auth::guard('webcustomer')->attempt($credentials)){
                 $request->session()->regenerate();
                 return redirect("/");
             } else {
                 Session::flash('failed', "Wrong password");
-                return redirect('/login_member');
+                return redirect('/login_customer');
             }
         } else {
             Session::flash('failed', "Email not found");
-            return redirect('/login_member');
+            return redirect('/login_customer');
         }
     }
 
-    public function register_member(){
-        return view('auth.register_member');
+    public function register_customer(){
+        return view('auth.register_customer');
     }
 
     public function logout(){
@@ -108,8 +109,8 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
-    public function logout_member(){
-        Auth::guard('webmember')->logout();
+    public function logout_customer(){
+        Auth::guard('webcustomer')->logout();
         Session::flush();
         return redirect('/');
     }

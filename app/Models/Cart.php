@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Member;
+use App\Models\Customer;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,8 +17,8 @@ class Cart extends Model
         return $this->belongsTo(Product::class, 'id_barang', 'id');
     }
 
-    public function member()
+    public function customer()
     {
-        return $this->belongsTo(Member::class, 'id_member', 'id');
+        return $this->belongsTo(Customer::class, 'id_customer', 'id');
     }
 }

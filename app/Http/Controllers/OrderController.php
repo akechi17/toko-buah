@@ -23,7 +23,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('member')->get();
+        $orders = Order::with('customer')->get();
 
         return response()->json([
             'data' => $orders
@@ -86,7 +86,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'id_member' => 'required'
+            'id_customer' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -138,7 +138,7 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $validator = Validator::make($request->all(),[
-            'id_member' => 'required'
+            'id_customer' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -177,7 +177,7 @@ class OrderController extends Controller
     }
 
     public function baru(){
-        $orders = Order::with('member')->where('status', 'Baru')->get();
+        $orders = Order::with('customer')->where('status', 'Baru')->get();
 
         return response()->json([
             'data' => $orders
@@ -185,7 +185,7 @@ class OrderController extends Controller
     }
 
     public function confirmed(){
-        $orders = Order::with('member')->where('status', 'confirmed')->get();
+        $orders = Order::with('customer')->where('status', 'confirmed')->get();
 
         return response()->json([
             'data' => $orders
@@ -193,7 +193,7 @@ class OrderController extends Controller
     }
     
     public function packed(){
-        $orders = Order::with('member')->where('status', 'packed')->get();
+        $orders = Order::with('customer')->where('status', 'packed')->get();
 
         return response()->json([
             'data' => $orders
@@ -201,7 +201,7 @@ class OrderController extends Controller
     }
 
     public function sent(){
-        $orders = Order::with('member')->where('status', 'sent')->get();
+        $orders = Order::with('customer')->where('status', 'sent')->get();
 
         return response()->json([
             'data' => $orders
@@ -209,7 +209,7 @@ class OrderController extends Controller
     }
 
     public function received(){
-        $orders = Order::with('member')->where('status', 'received')->get();
+        $orders = Order::with('customer')->where('status', 'received')->get();
 
         return response()->json([
             'data' => $orders
@@ -217,7 +217,7 @@ class OrderController extends Controller
     }
 
     public function finished(){
-        $orders = Order::with('member')->where('status', 'finished')->get();
+        $orders = Order::with('customer')->where('status', 'finished')->get();
 
         return response()->json([
             'data' => $orders

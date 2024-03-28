@@ -32,9 +32,9 @@
               @php
                 
                 $about = App\Models\About::first();
-                if (Auth::guard('webmember')->check()){
-                $user_id = Illuminate\Support\Facades\Auth::guard('webmember')->user()->id;
-                $cart_total = App\Models\Cart::where('id_member', Auth::guard('webmember')->user()->id)->where('is_checkout', 0)->count();
+                if (Auth::guard('webcustomer')->check()){
+                $user_id = Illuminate\Support\Facades\Auth::guard('webcustomer')->user()->id;
+                $cart_total = App\Models\Cart::where('id_customer', Auth::guard('webcustomer')->user()->id)->where('is_checkout', 0)->count();
                 }
               @endphp
               <a href="/" class="js-logo-clone">{{ $about->judul_website }}</a>
@@ -58,15 +58,15 @@
           </div>
           <div class="icons">
             
-            @if (Auth::guard('webmember')->check())
+            @if (Auth::guard('webcustomer')->check())
             <a href="/cart" class="icons-btn d-inline-block bag">
               <span class="icon-shopping-bag"></span>
               <span class="number">{{ $cart_total }}</span>
             </a>
-            <a href="#">{{ Auth::guard('webmember')->user()->nama_member }}</a>
-            <a href="/logout_member"><span class="btn btn-round btn-primary">Log Out</span></a>
+            <a href="#">{{ Auth::guard('webcustomer')->user()->nama_customer }}</a>
+            <a href="/logout_customer"><span class="btn btn-round btn-primary">Log Out</span></a>
             @else
-            <a href="/login_member"><span class="btn btn-round btn-primary">Sign In</span></a>
+            <a href="/login_customer"><span class="btn btn-round btn-primary">Sign In</span></a>
             @endif
             <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                 class="icon-menu"></span></a>

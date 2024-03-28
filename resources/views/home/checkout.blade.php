@@ -24,14 +24,14 @@
               <div class="form-group row">
                 <div class="col-md-12">
                   <label for="atas_nama" class="text-black">Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="atas_nama" name="atas_nama">
+                  <input type="text" class="form-control" id="atas_nama" name="atas_nama" placeholder="Name">
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="address_detail" class="text-black">Address <span class="text-danger">*</span></label>
                 <textarea name="address_detail" id="address_detail" cols="30" rows="5" class="form-control"
-                  placeholder="Address Detail..."></textarea>
+                  placeholder="Address Detail...">{{ Auth::guard('webcustomer')->user()->address }}</textarea>
               </div>
 
               <div class="form-group row">

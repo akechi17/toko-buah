@@ -34,8 +34,8 @@ class HomeController extends Controller
     }
 
     public function product($id_product){
-        if (!Auth::guard('webmember')->user()) {
-            return redirect('/login_member');
+        if (!Auth::guard('webcustomer')->user()) {
+            return redirect('/login_customer');
         }
 
         $product = Product::find($id_product);
@@ -43,17 +43,17 @@ class HomeController extends Controller
         return view('home.product', compact('product', 'latest_products'));
     }
     public function cart(){
-        if (!Auth::guard('webmember')->user()) {
-            return redirect('/login_member');
+        if (!Auth::guard('webcustomer')->user()) {
+            return redirect('/login_customer');
         }
 
-        $carts = Cart::where('id_member', Auth::guard('webmember')->user()->id)->where('is_checkout', 0)->get();
-        $cart_total = Cart::where('id_member', Auth::guard('webmember')->user()->id)->where('is_checkout', 0)->sum('total');
+        $carts = Cart::where('id_customer', Auth::guard('webcustomer')->user()->id)->where('is_checkout', 0)->get();
+        $cart_total = Cart::where('id_customer', Auth::guard('webcustomer')->user()->id)->where('is_checkout', 0)->sum('total');
         return view('home.cart', compact('carts', 'cart_total'));
     }
     public function checkout_orders(Request $request){
         $id = DB::table('orders')->insertGetId([
-            'id_member' => $request->id_member, 
+            'id_customer' => $request->id_customer, 
             'invoice' => date('ymds'),
             'grand_total' => $request->grand_total,
             'status' => 'Baru',
@@ -71,15 +71,15 @@ class HomeController extends Controller
     }
     public function checkout(){
         $about = About::first();
-        $carts = Cart::where('id_member', Auth::guard('webmember')->user()->id)->where('is_checkout', 0)->get();
-        $orders = Order::where('id_member', Auth::guard('webmember')->user()->id)->first();
+        $carts = Cart::where('id_customer', Auth::guard('webcustomer')->user()->id)->where('is_checkout', 0)->get();
+        $orders = Order::where('id_customer', Auth::guard('webcustomer')->user()->id)->first();
         return view('home.checkout', compact('about', 'carts', 'orders'));
     }
 
     public function payments(Request $request){
         Payment::create([
             'id_order' => $request->id_order,
-            'id_member' => Auth::guard('webmember')->user()->id,
+            'id_customer' => Auth::guard('webcustomer')->user()->id,
             'jumlah' => $request->jumlah,
             'address_detail' => $request->address_detail,
             'status' => 'MENUNGGU',
@@ -87,7 +87,7 @@ class HomeController extends Controller
             'atas_nama' => $request->atas_nama,
         ]);
         
-        $cart = Cart::where('id_member', Auth::guard('webmember')->user()->id)->update([
+        $cart = Cart::where('id_customer', Auth::guard('webcustomer')->user()->id)->update([
             'is_checkout' => 1
         ]);
 
@@ -95,12 +95,12 @@ class HomeController extends Controller
     }
 
     public function orders(){
-        if (!Auth::guard('webmember')->user()) {
-            return redirect('/login_member');
+        if (!Auth::guard('webcustomer')->user()) {
+            return redirect('/login_customer');
         }
         
-        $orders = Order::where('id_member', Auth::guard('webmember')->user()->id)->get();
-        $payments = Payment::where('id_member', Auth::guard('webmember')->user()->id)->get();
+        $orders = Order::where('id_customer', Auth::guard('webcustomer')->user()->id)->get();
+        $payments = Payment::where('id_customer', Auth::guard('webcustomer')->user()->id)->get();
         return view('home.orders', compact('orders', 'payments'));
     }
 

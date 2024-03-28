@@ -49,7 +49,7 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'id_member' => 'required',
+            'id_customer' => 'required',
             'id_produk' => 'required',
             'review' => 'required',
             'rating' => 'required'
@@ -102,7 +102,7 @@ class ReviewController extends Controller
     public function update(Request $request, Review $review)
     {
         $validator = Validator::make($request->all(),[
-            'id_member' => 'required',
+            'id_customer' => 'required',
             'id_produk' => 'required',
             'review' => 'required',
             'rating' => 'required'

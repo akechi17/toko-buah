@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 
-class MemberController extends Controller
+class CustomerController extends Controller
 {
     public function __construct(){
         $this->middleware('auth:api', ['except' => 'index']);
@@ -19,10 +19,10 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::all();
+        $customers = Customer::all();
 
         return response()->json([
-            'data' => $members
+            'data' => $customers
         ]);
     }
 
@@ -40,7 +40,7 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'nama_member' => 'required',
+            'nama_customer' => 'required',
             'provinsi' => 'required',
             'kabupaten' => 'required',
             'kecamatan' => 'required',
@@ -61,26 +61,26 @@ class MemberController extends Controller
         $input['password'] = bcrypt($request->password);
         unset($input['konfirmasi_password']);
 
-        $member = Member::create($input);
+        $customer = Customer::create($input);
         return response()->json([
-            'data' => $member
+            'data' => $customer
         ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Member $member)
+    public function show(Customer $customer)
     {
         return response()->json([
-            'data' => $member
+            'data' => $customer
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Member $member)
+    public function edit(Customer $customer)
     {
         //
     }
@@ -88,10 +88,10 @@ class MemberController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Member $member)
+    public function update(Request $request, Customer $customer)
     {
         $validator = Validator::make($request->all(),[
-            'nama_member' => 'required',
+            'nama_customer' => 'required',
             'provinsi' => 'required',
             'kabupaten' => 'required',
             'kecamatan' => 'required',
@@ -112,21 +112,21 @@ class MemberController extends Controller
         $input['password'] = bcrypt($request->password);
         unset($input['konfirmasi_password']);
 
-        $member = Member::create($input);
+        $customer = Customer::create($input);
         return response()->json([
-            'data' => $member
+            'data' => $customer
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Member $member)
+    public function destroy(Customer $customer)
     {
-        $member->delete();
+        $customer->delete();
 
         return response()->json([
-           'message' => 'Member deleted successfully.'
+           'message' => 'Customer deleted successfully.'
         ]);
     }
 }
