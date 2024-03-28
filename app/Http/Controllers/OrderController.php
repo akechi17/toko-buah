@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,8 +14,8 @@ use Illuminate\Support\Facades\Validator;
 class OrderController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth')->only(['list', 'dikonfirmasi_list', 'dikemas_list', 'dikirim_list', 'diterima_list', 'selesai_list']);
-        $this->middleware('auth:api')->only(['store', 'update', 'destroy', 'ubah_status', 'baru', 'dikonfirmasi', 'dikemas', 'dikirim', 'diterima', 'selesai' ]);
+        $this->middleware('auth')->only(['list', 'confirmed_list', 'packed_list', 'sent_list', 'received_list', 'finished_list']);
+        $this->middleware('auth:api')->only(['store', 'update', 'destroy', 'ubah_status', 'baru', 'confirmed', 'packed', 'sent', 'received', 'finished' ]);
     }
 
     /**
@@ -30,27 +31,45 @@ class OrderController extends Controller
     }
 
     public function list(){
+        if (!(Auth::guard('web')->user()->role == 'admin')) {
+            return redirect('/home');
+        }
         return view('pesanan.index');
     }
 
-    public function dikonfirmasi_list(){
-        return view('pesanan.dikonfirmasi');
+    public function confirmed_list(){
+        if (!(Auth::guard('web')->user()->role == 'admin')) {
+            return redirect('/home');
+        }
+        return view('pesanan.confirmed');
     }
 
-    public function dikemas_list(){
-        return view('pesanan.dikemas');
+    public function packed_list(){
+        if (!(Auth::guard('web')->user()->role == 'admin')) {
+            return redirect('/home');
+        }
+        return view('pesanan.packed');
     }
 
-    public function dikirim_list(){
-        return view('pesanan.dikirim');
+    public function sent_list(){
+        if (!(Auth::guard('web')->user()->role == 'admin')) {
+            return redirect('/home');
+        }
+        return view('pesanan.sent');
     }
 
-    public function diterima_list(){
-        return view('pesanan.diterima');
+    public function received_list(){
+        if (!(Auth::guard('web')->user()->role == 'admin')) {
+            return redirect('/home');
+        }
+        return view('pesanan.received');
     }
 
-    public function selesai_list(){
-        return view('pesanan.selesai');
+    public function finished_list(){
+        if (!(Auth::guard('web')->user()->role == 'admin')) {
+            return redirect('/home');
+        }
+        return view('pesanan.finished');
     }
 
     /**
@@ -165,40 +184,40 @@ class OrderController extends Controller
         ]);
     }
 
-    public function dikonfirmasi(){
-        $orders = Order::with('member')->where('status', 'Dikonfirmasi')->get();
+    public function confirmed(){
+        $orders = Order::with('member')->where('status', 'confirmed')->get();
 
         return response()->json([
             'data' => $orders
         ]);
     }
     
-    public function dikemas(){
-        $orders = Order::with('member')->where('status', 'Dikemas')->get();
+    public function packed(){
+        $orders = Order::with('member')->where('status', 'packed')->get();
 
         return response()->json([
             'data' => $orders
         ]);
     }
 
-    public function dikirim(){
-        $orders = Order::with('member')->where('status', 'Dikirim')->get();
+    public function sent(){
+        $orders = Order::with('member')->where('status', 'sent')->get();
 
         return response()->json([
             'data' => $orders
         ]);
     }
 
-    public function diterima(){
-        $orders = Order::with('member')->where('status', 'Diterima')->get();
+    public function received(){
+        $orders = Order::with('member')->where('status', 'received')->get();
 
         return response()->json([
             'data' => $orders
         ]);
     }
 
-    public function selesai(){
-        $orders = Order::with('member')->where('status', 'Selesai')->get();
+    public function finished(){
+        $orders = Order::with('member')->where('status', 'finished')->get();
 
         return response()->json([
             'data' => $orders

@@ -30,12 +30,13 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav" id="accordionSidebar">
-                    <li class="{{ (Request::is('dashboard') ? 'active' : '') ? 'active' : '' }}">
-                        <a href="/dashboard">
+                    <li class="{{ (Request::is('home') ? 'active' : '') ? 'active' : '' }}">
+                        <a href="/home">
                         <i class="nc-icon nc-bank"></i>
-                        <p>Dashboard</p>
+                        <p>Home</p>
                         </a>
                     </li>
+                    @if (Auth::guard('web')->user()->role == 'admin')
                     <li class="{{ (Request::is('barang') ? 'active' : '') ? 'active' : '' }}">
                         <a href="/barang">
                         <i class="nc-icon nc-single-02"></i>
@@ -56,20 +57,23 @@
                         <div id="pesanan" class="collapse" aria-labelledby="orderDropdown" data-parent="#accordionSidebar">
                             <div class="py-2 collapse-inner rounded bg-white">
                                 <a class="collapse-item" href="/pesanan/baru">New Orders</a>
-                                <a class="collapse-item" href="/pesanan/dikonfirmasi">Confirmed Orders</a>
-                                <a class="collapse-item" href="/pesanan/dikemas">Packed Orders</a>
-                                <a class="collapse-item" href="/pesanan/dikirim">Sent Orders</a>
-                                <a class="collapse-item" href="/pesanan/diterima">Received Orders</a>
-                                <a class="collapse-item" href="/pesanan/selesai">Finished Orders</a>
+                                <a class="collapse-item" href="/pesanan/confirmed">Confirmed Orders</a>
+                                <a class="collapse-item" href="/pesanan/packed">Packed Orders</a>
+                                <a class="collapse-item" href="/pesanan/sent">Sent Orders</a>
+                                <a class="collapse-item" href="/pesanan/received">Received Orders</a>
+                                <a class="collapse-item" href="/pesanan/finished">Finished Orders</a>
                             </div>
                         </div>
                     </li>
+                    @endif
+                    @if (Auth::guard('web')->user()->role == 'owner')
                     <li class="{{ (Request::is('report') ? 'active' : '') ? 'active' : '' }}">
                         <a href="/report">
                         <i class="nc-icon nc-single-02"></i>
                         <p>Order Report</p>
                         </a>
                     </li>
+                    @endif
                 </ul>
             </div>
         </div>

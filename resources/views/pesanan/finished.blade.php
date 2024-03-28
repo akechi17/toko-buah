@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Received Orders Data')
+@section('title', 'Finished Orders Data')
 
 @section('content')
 <div class="content">
@@ -8,7 +8,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Received Orders Data</h4>
+          <h4 class="card-title">Finished Orders Data</h4>
         </div>
         <div class="card-body">
           <div>
@@ -28,9 +28,6 @@
                 </th>
                 <th>
                   Total
-                </th>
-                <th class='text-center'>
-                  Action
                 </th>
               </thead>
               <tbody>
@@ -65,7 +62,7 @@
 
             const token = localStorage.getItem('token');
             $.ajax({
-                url : '/api/pesanan/diterima',
+                url : '/api/pesanan/finished',
                 headers : {
                     "Authorization": token
                 },
@@ -79,32 +76,11 @@
                             <td>${val.invoice}</td>
                             <td>${val.member.nama_member}</td>
                             <td>${rupiah(val.grand_total)}</td>
-                            <td>
-                                <a href="#" data-id="${val.id}" class="btn btn-success btn-aksi">Selesai</a>
-                            </td>
                         </tr>
                         `;
                     });
                     $('tbody').append(row)
                 }
-            })
-
-            $(document).on('click','.btn-aksi',function(){
-                const id = $(this).data('id');
-
-                $.ajax({
-                    url: '/api/pesanan/ubah_status/' + id,
-                    type: 'POST',
-                    data: {
-                        status: 'selesai'
-                    },
-                    headers : {
-                        "Authorization": token
-                    },
-                    success: function(data){
-                        location.reload();
-                    }
-                })
             })
 
         });

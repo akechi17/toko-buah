@@ -108,7 +108,7 @@
                             alert(data.message);
                         }
                         setCookie('token', data.token, 7);
-                        window.location.href = '/dashboard';
+                        window.location.href = '/home';
                     }
                 })
             })

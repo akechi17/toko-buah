@@ -65,7 +65,7 @@
 
             const token = localStorage.getItem('token');
             $.ajax({
-                url : '/api/pesanan/dikemas',
+                url : '/api/pesanan/packed',
                 headers : {
                     "Authorization": token
                 },
@@ -80,7 +80,7 @@
                             <td>${val.member.nama_member}</td>
                             <td>${rupiah(val.grand_total)}</td>
                             <td>
-                                <a href="#" data-id="${val.id}" class="btn btn-success btn-aksi">Kirim</a>
+                                <a href="#" data-id="${val.id}" class="btn btn-success btn-aksi">Send</a>
                             </td>
                         </tr>
                         `;
@@ -96,7 +96,7 @@
                     url: '/api/pesanan/ubah_status/' + id,
                     type: 'POST',
                     data: {
-                        status: 'dikirim'
+                        status: 'sent'
                     },
                     headers : {
                         "Authorization": token

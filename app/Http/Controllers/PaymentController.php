@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,6 +17,9 @@ class PaymentController extends Controller
     }
     
     public function list(){
+        if (!(Auth::guard('web')->user()->role == 'admin')) {
+            return redirect('/home');
+        }
         return view('payment.index');
     }
 

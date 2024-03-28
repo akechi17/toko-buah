@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,6 +18,9 @@ class ProductController extends Controller
     }
 
     public function list(){
+        if (!(Auth::guard('web')->user()->role == 'admin')) {
+            return redirect('/home');
+        }
         return view('product.index');
     }
     /**

@@ -3,23 +3,19 @@
 namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\About;
-use App\Models\Slider;
 use App\Models\Product;
-use App\Models\Category;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Testimoni;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
     public function index(){
-        $testimonies = Testimoni::all();
         $products = Product::skip(0)->take(8)->get();
-        return view('home.index', compact('testimonies', 'products'));
+        return view('home.index', compact('products'));
     }
     
     public function products($category){
@@ -99,6 +95,10 @@ class HomeController extends Controller
     }
 
     public function orders(){
+        if (!Auth::guard('webmember')->user()) {
+            return redirect('/login_member');
+        }
+        
         $orders = Order::where('id_member', Auth::guard('webmember')->user()->id)->get();
         $payments = Payment::where('id_member', Auth::guard('webmember')->user()->id)->get();
         return view('home.orders', compact('orders', 'payments'));

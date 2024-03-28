@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Sent Orders Data')
+@section('title', 'Confirmed Orders Data')
 
 @section('content')
 <div class="content">
@@ -8,7 +8,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Sent Orders Data</h4>
+          <h4 class="card-title">Confirmed Orders Data</h4>
         </div>
         <div class="card-body">
           <div>
@@ -65,7 +65,7 @@
 
             const token = localStorage.getItem('token');
             $.ajax({
-                url : '/api/pesanan/dikirim',
+                url : '/api/pesanan/confirmed',
                 headers : {
                     "Authorization": token
                 },
@@ -80,7 +80,7 @@
                             <td>${val.member.nama_member}</td>
                             <td>${rupiah(val.grand_total)}</td>
                             <td>
-                                <a href="#" data-id="${val.id}" class="btn btn-success btn-aksi">Diterima</a>
+                                <a href="#" data-id="${val.id}" class="btn btn-success btn-aksi">Pack</a>
                             </td>
                         </tr>
                         `;
@@ -96,7 +96,7 @@
                     url: '/api/pesanan/ubah_status/' + id,
                     type: 'POST',
                     data: {
-                        status: 'diterima'
+                        status: 'packed'
                     },
                     headers : {
                         "Authorization": token

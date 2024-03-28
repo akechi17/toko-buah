@@ -45,11 +45,11 @@ Route::group([
     ]);
 
     Route::get('pesanan/baru', [OrderController::class, 'baru']);
-    Route::get('pesanan/dikonfirmasi', [OrderController::class, 'dikonfirmasi']);
-    Route::get('pesanan/dikemas', [OrderController::class, 'dikemas']);
-    Route::get('pesanan/dikirim', [OrderController::class, 'dikirim']);
-    Route::get('pesanan/diterima', [OrderController::class, 'diterima']);
-    Route::get('pesanan/selesai', [OrderController::class, 'selesai']);
+    Route::get('pesanan/confirmed', [OrderController::class, 'confirmed']);
+    Route::get('pesanan/packed', [OrderController::class, 'packed']);
+    Route::get('pesanan/sent', [OrderController::class, 'sent']);
+    Route::get('pesanan/received', [OrderController::class, 'received']);
+    Route::get('pesanan/finished', [OrderController::class, 'finished']);
     Route::post('pesanan/ubah_status/{order}', [OrderController::class, 'ubah_status']);
     Route::get('reports', [ReportController::class, 'get_reports']);
 });
