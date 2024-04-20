@@ -9,6 +9,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DiscountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::get('logout_customer', [AuthController::class, 'logout_customer']);
 Route::get('register_customer', [AuthController::class, 'register_customer']);
 Route::post('register_customer', [AuthController::class, 'register_customer_action']);
 Route::get('/barang', [ProductController::class, 'list']);
+Route::get('/discounts', [DiscountController::class, 'list']);
 Route::get('/reviews', [ReviewController::class, 'list']);
 Route::get('/payment', [PaymentController::class, 'list']);
 

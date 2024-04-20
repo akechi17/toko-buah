@@ -6,47 +6,48 @@
 <div class="content">
     <div class="row">
         <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-            <h4 class="card-title">Payment Data</h4>
-            </div>
-            <div class="card-body">
-            <div>
-                <table class="table">
-                <thead class=" text-primary">
-                    <th>
-                    No
-                    </th>
-                    <th>
-                    Date
-                    </th>
-                    <th>
-                    Order
-                    </th>
-                    <th>
-                    Total
-                    </th>
-                    <th>
-                    Account Number
-                    </th>
-                    <th>
-                    Name
-                    </th>
-                    <th>
-                    Status
-                    </th>
-                    <th class='text-center'>
-                    Action
-                    </th>
-                </thead>
-                <tbody>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Payment Data</h4>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <table class="table">
+                        <thead class=" text-primary">
+                            <th>
+                            No
+                            </th>
+                            <th>
+                            Date
+                            </th>
+                            <th>
+                            Order
+                            </th>
+                            <th>
+                            Total
+                            </th>
+                            <th>
+                            Account Number
+                            </th>
+                            <th>
+                            Name
+                            </th>
+                            <th>
+                            Status
+                            </th>
+                            <th class='text-center'>
+                            Action
+                            </th>
+                        </thead>
+                        <tbody>
 
-                </tbody>
-                </table>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
-    </div> 
+        </div> 
+    </div>
 </div>
 
 <div class="modal fade" id="modal-form" tabindex="-1" role="dialog">

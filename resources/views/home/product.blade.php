@@ -23,10 +23,8 @@
       <div class="col-md-6">
         <h2 class="text-black">{{ $product->product_name }}</h2>
         <p>{{ $product->deskripsi }}</p>
-        
-
         <p><strong class="text-primary h4">Rp. {{ number_format($product->price) }}</strong></p>
-
+        <p>Stok: {{ $product->stok }}</p>
         <div class="mb-5">
           <div class="input-group mb-3" style="max-width: 220px;">
             <div class="input-group-prepend">

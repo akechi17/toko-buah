@@ -69,12 +69,17 @@
       @foreach ($products as $product)
       <div class="col-sm-6 col-lg-4 text-center item mb-4">
         <span class="tag">Sale</span>
-        <a href="/store/{{ $product->id }}"><img src="/uploads/{{ $product->foto1 }}" alt="Image"></a>
+        <a href="/store/{{ $product->id }}" class="product-link">
+          <div class="image-container">
+            <img src="/uploads/{{ $product->foto1 }}" alt="Image" class="product-image">
+          </div>
+        </a>
         <h3 class="text-dark"><a href="/store/{{ $product->id }}">{{ $product->product_name }}</a></h3>
         <p class="price">{{ number_format($product->price) }}</p>
       </div>
       @endforeach
     </div>
+
     <div class="row mt-5">
       <div class="col-12 text-center">
         <a href="/stores/buah" class="btn btn-primary px-4 py-3">View All Products</a>

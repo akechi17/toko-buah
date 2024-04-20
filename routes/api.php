@@ -10,6 +10,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DiscountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,7 @@ Route::group([
         'reviews' => ReviewController::class,
         'orders' => OrderController::class,
         'payments' => PaymentController::class,
+        'discounts' => DiscountController::class,
     ]);
 
     Route::get('pesanan/baru', [OrderController::class, 'baru']);

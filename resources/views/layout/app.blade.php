@@ -43,6 +43,12 @@
                         <p>Products</p>
                         </a>
                     </li>
+                    <li class="{{ (Request::is('discounts') ? 'active' : '') ? 'active' : '' }}">
+                        <a href="/discounts">
+                        <i class="nc-icon nc-single-02"></i>
+                        <p>Discounts</p>
+                        </a>
+                    </li>
                     <li class="{{ (Request::is('payment') ? 'active' : '') ? 'active' : '' }}">
                         <a href="/payment">
                         <i class="nc-icon nc-bell-55"></i>
@@ -110,14 +116,8 @@
                 </div>
             </nav>
             <!-- End Navbar -->
-            <div class="content">
-                <div class="row">
-                <div class="col-md-12">
-                    @yield('content')
-                </div>
-                </div>
-            </div>
-            <footer class="footer" style="position: absolute; bottom: 0; width: -webkit-fill-available;">
+            @yield('content')
+            <footer class="footer">
                 <div class="container-fluid">
                 <div class="row">
                     <nav class="footer-nav">

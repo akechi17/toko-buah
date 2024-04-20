@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     public function index(){
-        $products = Product::skip(0)->take(8)->get();
+        $products = Product::where('stok', '>', 0)->skip(0)->take(8)->get();
         return view('home.index', compact('products'));
     }
     
     public function products($category){
-        $products = Product::where('category', $category)->get();
+        $products = Product::where('category', $category)->where('stok', '>', 0)->get();
         return view('home.products', compact('products'));
     }
 
@@ -39,7 +39,7 @@ class HomeController extends Controller
         }
 
         $product = Product::find($id_product);
-        $latest_products = Product::orderByDesc('created_at')->offset(0)->limit(10)->get();
+        $latest_products = Product::where('stok', '>', 0)->orderByDesc('created_at')->offset(0)->limit(10)->get();
         return view('home.product', compact('product', 'latest_products'));
     }
     public function cart(){
@@ -86,11 +86,19 @@ class HomeController extends Controller
             'no_rekening' => $request->no_rekening,
             'atas_nama' => $request->atas_nama,
         ]);
+        $cartItems = Cart::where('id_customer', Auth::guard('webcustomer')->user()->id)->where('is_checkout', 0)->get();
+        foreach ($cartItems as $cartItem) {
+            $product = Product::where('id', $cartItem->product->id)->first();;
+            if ($product) {
+                $product->update([
+                    'stok' => $product->stok - $cartItem->jumlah
+                ]);
+            }
+            $cartItem->update([
+                'is_checkout' => 1
+            ]);
+        }
         
-        $cart = Cart::where('id_customer', Auth::guard('webcustomer')->user()->id)->update([
-            'is_checkout' => 1
-        ]);
-
         return redirect('/orders');
     }
 
@@ -113,8 +121,7 @@ class HomeController extends Controller
 
     public function about(){
         $about = About::first();
-        $testimonies = Testimoni::all();
-        return view('home.about', compact('about', 'testimonies'));
+        return view('home.about', compact('about'));
     }
 
     public function contact(){
