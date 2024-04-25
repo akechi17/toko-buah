@@ -36,6 +36,7 @@
               @foreach ($carts as $cart)
               @php
                 $checkoutTotal += $cart->total;
+                $discount = $discounts->where('id_barang', $cart->product->id)->where('start_date', '<=', now())->where('end_date', '>=', now())->first();
               @endphp
               
               <input type="hidden" name="id_produk[]" value="{{ $cart->product->id }}">
@@ -48,7 +49,11 @@
                 <td class="product-name">
                   <h2 class="h5 text-black">{{ $cart->product->product_name }}</h2>
                 </td>
+                @if ($discount)
+                <td>RP {{ number_format($cart->product->price * (1 - $discount->percentage / 100)) }}</td>
+                @else
                 <td>{{ "Rp ". number_format($cart->product->price) }}</td>
+                @endif
                 <td>{{ $cart->jumlah }}</td>
                 <td>{{ "Rp ". number_format($cart->total) }}</td>
                 <td><a href="/delete_from_cart/{{ $cart->id }}" class="btn btn-primary height-auto btn-sm">X</a></td>

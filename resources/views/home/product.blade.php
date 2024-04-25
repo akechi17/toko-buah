@@ -23,7 +23,11 @@
       <div class="col-md-6">
         <h2 class="text-black">{{ $product->product_name }}</h2>
         <p>{{ $product->deskripsi }}</p>
-        <p><strong class="text-primary h4">Rp. {{ number_format($product->price) }}</strong></p>
+        @if ($discount)
+          <p class="text-primary h4"><del>RP {{ number_format($product->price) }}</del> &mdash; RP {{ number_format($product->price * (1 - $discount->percentage / 100)) }}</p>
+        @else
+          <p><strong class="text-primary h4">Rp. {{ number_format($product->price) }}</strong></p>
+        @endif
         <p>Stok: {{ $product->stok }}</p>
         <div class="mb-5">
           <div class="input-group mb-3" style="max-width: 220px;">
@@ -124,7 +128,11 @@
         id_customer = {{Auth::guard('webcustomer')->user()->id}}
         id_barang = {{ $product->id }}
         jumlah = $('.jumlah').val()
-        total = {{ $product->price }}*jumlah
+        @if ($discount)
+          total = {{ $product->price * (1 - $discount->percentage / 100) }} * jumlah;
+        @else
+          total = {{ $product->price }} * jumlah;
+        @endif
         is_checkout = 0
 
         $.ajax({
