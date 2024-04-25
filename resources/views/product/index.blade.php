@@ -76,8 +76,8 @@
                       <div class="form-group">
                           <label for="">Product Category</label>
                           <select name="category" id="category" class="form-control">
-                                  <option value="sayur">Sayur</option>
-                                  <option value="buah">Buah</option>
+                            <option value="sayur">Sayur</option>
+                            <option value="buah">Buah</option>
                           </select>
                       </div>
                       <div class="form-group">
@@ -209,7 +209,11 @@
                 const id = $(this).data('id');
                 $.get('/api/products/' + id, function({data}){
                     $('input[name="product_name"]').val(data.product_name);
-                    $('option[name="category"]').val(data.category);
+                    $('select[name="category"] option').each(function() {
+                      if ($(this).val() == data.category) {
+                        $(this).prop('selected', true);
+                      }
+                    });
                     $('input[name="price"]').val(data.price);
                     $('input[name="stok"]').val(data.stok);
                     $('textarea[name="deskripsi"]').val(data.deskripsi);

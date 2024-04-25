@@ -118,50 +118,44 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'product_name' => 'required|string',
             'category' => 'required|in:buah,sayur',
             'price' => 'required|numeric',
             'stok' => 'required|integer',
-            'foto1' => 'required|image|max:2048',
+            'foto1' => 'nullable|image|max:2048',
             'foto2' => 'nullable|image|max:2048',
             'foto3' => 'nullable|image|max:2048',
             'deskripsi' => 'nullable|string',
         ]);
 
         if ($validator->fails()) {
-           return response()->json(
-            $validator->errors(),422
-           );
+            return response()->json(
+                $validator->errors(), 422
+            );
         }
 
         $input = $request->all();
-        
-        if($request->has('foto1')) {
+
+        if ($request->hasFile('foto1')) {
             $gambar = $request->file('foto1');
             $nama_gambar = time() . rand(1, 9) . '.' . $gambar->getClientOriginalExtension();
             $gambar->move('uploads', $nama_gambar);
             $input['foto1'] = $nama_gambar;
-        } else{
-            unset($input['foto1']);
         }
-        
-        if($request->has('foto2')) {
+
+        if ($request->hasFile('foto2')) {
             $gambar = $request->file('foto2');
             $nama_gambar = time() . rand(1, 9) . '.' . $gambar->getClientOriginalExtension();
             $gambar->move('uploads', $nama_gambar);
             $input['foto2'] = $nama_gambar;
-        } else{
-            unset($input['foto2']);
         }
-        
-        if($request->has('foto3')) {
+
+        if ($request->hasFile('foto3')) {
             $gambar = $request->file('foto3');
             $nama_gambar = time() . rand(1, 9) . '.' . $gambar->getClientOriginalExtension();
             $gambar->move('uploads', $nama_gambar);
             $input['foto3'] = $nama_gambar;
-        } else{
-            unset($input['foto3']);
         }
 
         $product->update($input);
